@@ -52,7 +52,8 @@ import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
-import com.gojiyajayesh.cechatbot.ui.theme.GeminiChatBotTheme
+import com.gojiyajayesh.cechatbot.ui.theme.CEChatBotTheme
+import com.meetup.twain.MarkdownText
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
@@ -72,7 +73,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GeminiChatBotTheme {
+            CEChatBotTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
@@ -88,7 +89,7 @@ class MainActivity : ComponentActivity() {
                         ) {
                             Text(
                                 modifier = Modifier.align(Alignment.TopStart),
-                                text = "CE ChatBot",
+                                text = "College Enquiry ChatBot",
                                 fontSize = 19.sp,
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
@@ -199,7 +200,6 @@ class MainActivity : ComponentActivity() {
             }
 
         }
-
     }
 
     @Composable
@@ -207,7 +207,6 @@ class MainActivity : ComponentActivity() {
         Column(
             modifier = Modifier.padding(start = 100.dp, bottom = 16.dp)
         ) {
-
             bitmap?.let {
                 Image(
                     modifier = Modifier
@@ -240,17 +239,17 @@ class MainActivity : ComponentActivity() {
         Column(
             modifier = Modifier.padding(end = 40.dp, bottom = 16.dp)
         ) {
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(Color(0xFF304FFE))
-                    .padding(start = 16.dp, top = 8.dp, end = 12.dp, bottom = 8.dp),
-                text = response,
-                fontSize = 17.sp,
-                color = MaterialTheme.colorScheme.onPrimary
-            )
-
+            Surface(
+                modifier = Modifier.fillMaxWidth(), color = Color(0xFF304FFE), // Background color
+                shape = RoundedCornerShape(12.dp) // Rounded corners
+            ) {
+                MarkdownText(
+                    modifier = Modifier.padding(16.dp), // Padding for the MarkdownText
+                    markdown = response, style = MaterialTheme.typography.bodySmall.copy(
+                        color = MaterialTheme.colorScheme.onPrimary, fontSize = 17.sp
+                    )
+                )
+            }
         }
     }
 

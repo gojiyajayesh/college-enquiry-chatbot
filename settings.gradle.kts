@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Gemini Chat Bot"
+rootProject.name = "College Enquiry Chat Bot"
 include(":app")
  
